@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    border : solid 1px lightgray;
+    box-shadow: 5px 5px lightgray;
+
+}
+.upperPart {
+    display: flex;
+    flex-direction: row;
+    padding: 6px;
+    
+}
+.boldMaker {
+    font-weight: 800;
+}
+.lowerPart {
+    display: flex;
+    border-top: solid 1px lightgray;
+}
+.leftLowerPart {
+    display: flex;
+    margin: 5px;
+    flex-grow: 3;
+}
+.rightLowerPart {
+    display: flex;
+    flex-grow: 2;
+    background-color: #EEEEEF;
+    padding-left: 4px;
+}
+.leftUpperPart {
+    width: 20%;
+}
+.rightUpperPart {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+#closeButton {
+    display: flex;
+    padding-right: 4px;
+}
+.slash::after {
+    content: "/";
+    padding: 5px;
+}
