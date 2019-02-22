@@ -20,7 +20,7 @@ class InputFieldDemo extends Component {
   render() {
     const { name, sport } = this.state;
     const sportSelect = object1[sport];
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <>
         <h4>Name</h4>
