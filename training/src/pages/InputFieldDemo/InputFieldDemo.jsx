@@ -10,8 +10,6 @@ class InputFieldDemo extends Component {
     this.state = {
       name: '',
       sport: '',
-      cricket: '',
-      football: '',
     };
   }
 
@@ -26,9 +24,9 @@ class InputFieldDemo extends Component {
     return (
       <>
         <h4>Name</h4>
-        <TextField name="name" error="" value={name} onChange={this.handleChange('name')} />
+        <TextField error="" value={name} onChange={this.handleChange('name')} />
         <h4>Select the Sport you play?</h4>
-        <SelectField name="sport" error="" value={name} onChange={this.handleChange('sport')} />
+        <SelectField error="" value={name} onChange={this.handleChange('sport')} />
         {sport && (
           <div>
             <h4>What do you do?</h4>
