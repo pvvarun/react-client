@@ -1,14 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { sport } from '../../configs/constants';
+
 const SelectField = (props) => {
-    const {error, value, options, onChange, defaultText} = props;
-    return (
-        <>
-            <select>
-                <option value="select">select</option>
-                <option value="Cricket">Cricket</option>
-                <option value="Football">Football onChange={onChange} </option>
-            </select>
-        </>
-    );
-}
+  // const sports = [];
+  const { onChange } = props;
+  const sports = sport.map(element => <option value={element.value}>{element.label}</option>);
+  return (
+    <>
+      <select onChange={onChange}>
+        {sports}
+      </select>
+    </>
+  );
+};
+SelectField.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
 export default SelectField;
