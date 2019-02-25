@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 // import { TextFieldDemo } from './pages/TextFieldDemo';
-import { InputFieldDemo } from './pages/InputFieldDemo';
+// import { InputFieldDemo } from './pages/InputFieldDemo';
 // import { BannerDemo } from './pages/BannerDemo';
+import { Math } from './components/Math';
+// import theme from './theme';
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +31,10 @@ class App extends Component {
       <>
         {/* <BannerDemo />
         <TextFieldDemo {...this.state} /> */}
-        <InputFieldDemo />
+        {/* <InputFieldDemo /> */}
+        <Math first={9} second={5} operator="*">
+          {/* {this.renderCalculator(9, 3)} */}
+        </Math>
       </>
       // this.state.flag?<TextFieldDemo />:<TextFieldDemo />
     );
