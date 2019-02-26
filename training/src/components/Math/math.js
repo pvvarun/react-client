@@ -8,10 +8,8 @@ class MathCalculation {
     };
   }
 
-  calculate = (first, second, operator) => {
-    console.log('--------------answer from object-------', this.operators[operator]);
-    return (this.operators[operator]) ? this.operators[operator](first, second) : 'Not a Valid Operator';
-  }
+  calculate = (first, second, operator) => ((this.operators[operator]) ? this.operators[operator](first, second) : 'Not a Valid Operator');
+
 
   addition = (first, second) => (first + second);
 

@@ -8,7 +8,7 @@ const theme = createMuiTheme({
       'cursive',
       'Comic Sans Ms',
     ].join(','),
-    fontSize: 12,
+    htmlFontSize: 10,
   },
 });
 

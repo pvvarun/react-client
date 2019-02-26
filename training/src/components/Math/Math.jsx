@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import math from './math';
-import { ChildrenDemo } from '../ChildrenDemo';
 
 class Math extends Component {
   // constructor(props) {
@@ -14,11 +13,11 @@ class Math extends Component {
 
   render() {
     const {
-      first, second, operator,
+      first, second, operator, children,
     } = this.props;
     const result = math.calculate(first, second, operator);
-    const answer = ChildrenDemo.simpleStatements(first, second, operator, result);
-    return answer;
+    // console.log('-----------childern show -------', children, first, second, result, operator);
+    return (children) ? children(first, second, operator, result) : `${first} ${operator} ${second} = ${result}`;
   }
 }
 
@@ -26,12 +25,12 @@ Math.propTypes = {
   first: PropTypes.number.isRequired,
   second: PropTypes.number.isRequired,
   operator: PropTypes.string,
-  // children: PropTypes.func,
+  children: PropTypes.func,
 };
 
 Math.defaultProps = {
   operator: '+',
-  // children: (9, 4, '*'),
+  children: null,
 };
 
 export default Math;

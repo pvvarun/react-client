@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 // import { TextFieldDemo } from './pages/TextFieldDemo';
 // import { InputFieldDemo } from './pages/InputFieldDemo';
 // import { BannerDemo } from './pages/BannerDemo';
-import { Math } from './components/Math';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import { ChildrenDemo } from './pages/ChildrenDemo';
+import theme from './theme';
 // import theme from './theme';
 
 class App extends Component {
@@ -32,9 +35,12 @@ class App extends Component {
         {/* <BannerDemo />
         <TextFieldDemo {...this.state} /> */}
         {/* <InputFieldDemo /> */}
-        <Math first={9} second={5} operator="*">
-          {/* {this.renderCalculator(9, 3)} */}
-        </Math>
+        <MuiThemeProvider theme={theme}>
+          <Typography>
+            <ChildrenDemo />
+            {/* {this.renderCalculator(9, 3)} */}
+          </Typography>
+        </MuiThemeProvider>
       </>
       // this.state.flag?<TextFieldDemo />:<TextFieldDemo />
     );
