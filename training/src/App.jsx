@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 // import { TextFieldDemo } from './pages/TextFieldDemo';
 // import { InputFieldDemo } from './pages/InputFieldDemo';
 // import { BannerDemo } from './pages/BannerDemo';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { ChildrenDemo } from './pages/ChildrenDemo';
-import theme from './theme';
+// import { MuiThemeProvider } from '@material-ui/core/styles';
+// import { Typography } from '@material-ui/core';
+// import { ChildrenDemo } from './pages/ChildrenDemo';
 // import theme from './theme';
+import { Trainee } from './pages/Trainee';
 
 class App extends Component {
   constructor(props) {
@@ -35,12 +35,13 @@ class App extends Component {
         {/* <BannerDemo />
         <TextFieldDemo {...this.state} /> */}
         {/* <InputFieldDemo /> */}
-        <MuiThemeProvider theme={theme}>
+        <Trainee />
+        {/* <MuiThemeProvider theme={theme}>
           <Typography>
             <ChildrenDemo />
-            {/* {this.renderCalculator(9, 3)} */}
+            {this.renderCalculator(9, 3)}
           </Typography>
-        </MuiThemeProvider>
+        </MuiThemeProvider> */}
       </>
       // this.state.flag?<TextFieldDemo />:<TextFieldDemo />
     );
