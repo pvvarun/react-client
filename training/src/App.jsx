@@ -6,7 +6,9 @@ import React, { Component } from 'react';
 // import { Typography } from '@material-ui/core';
 // import { ChildrenDemo } from './pages/ChildrenDemo';
 // import theme from './theme';
-import { Trainee } from './pages/Trainee';
+// import { Trainee } from './pages/Trainee';
+// import { NavBar } from './pages/Components/Navbar';
+import { Login } from './pages/Login';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +37,9 @@ class App extends Component {
         {/* <BannerDemo />
         <TextFieldDemo {...this.state} /> */}
         {/* <InputFieldDemo /> */}
-        <Trainee />
+        {/* <Trainee /> */}
+        {/* <NavBar /> */}
+        <Login />
         {/* <MuiThemeProvider theme={theme}>
           <Typography>
             <ChildrenDemo />

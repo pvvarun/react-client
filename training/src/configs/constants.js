@@ -23,3 +23,11 @@ export const AddDialogSchema = yup.object({
   ConfirmPassword: yup.string()
     .oneOf([yup.ref('Password'), null], 'Passwords must match'),
 });
+export const TraineeLoginSchema = yup.object({
+  EmailAddress: yup.string()
+    .matches(/^[A-Za-z0-9._%+-]+@successive.tech$/, 'EmailAddress must be a valid email.')
+    .required('Email Address is required'),
+  Password: yup.string()
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/, 'Password must be minimum of 8 characters and contains at least one Uppercase letter, lowercase letter and one digit.')
+    .required('Password is required.'),
+});
