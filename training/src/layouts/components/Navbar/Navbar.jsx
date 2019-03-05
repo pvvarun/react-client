@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -37,16 +39,21 @@ function NavBar(props) {
           <Typography variant="h5" color="inherit" className={classes.grow}>
             Trainee Portal
           </Typography>
-          <Button color="inherit">TRAINEE</Button>
-          <Button color="inherit">TEXTFIELD DEMO</Button>
-          <Button color="inherit">INPUT DEMO</Button>
-          <Button color="inherit">CHILDREN DEMO</Button>
+          <Link color="inherit" underline="none" component={RouterLink} to="/">
+            <Button color="inherit">TRAINEE</Button>
+          </Link>
+          <Link color="inherit" underline="none" component={RouterLink} to="/TextFieldDemo">
+            <Button color="inherit">TEXTFIELD DEMO</Button>
+          </Link>
+          <Link color="inherit" underline="none" component={RouterLink} to="/InputDemo">
+            <Button color="inherit">INPUT DEMO</Button>
+          </Link>
+          <Link color="inherit" underline="none" component={RouterLink} to="/ChildrenDemo">
+            <Button color="inherit">CHILDREN DEMO</Button>
+          </Link>
           <Button color="inherit" className={classes.gapBetweenButtons}>LOGOUT</Button>
         </Toolbar>
       </AppBar>
-      <Button variant="outlined" color="primary" className={classes.gapBetweenButtonAndHeader}>
-          ADD TRAINEE
-      </Button>
     </div>
   );
 }

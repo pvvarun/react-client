@@ -41,10 +41,10 @@ class AddDialog extends Component {
     // console.log('props ', props);
     // const { show } = this.props;
     this.state = {
-      Name: '',
-      EmailAddress: '',
-      Password: '',
-      ConfirmPassword: '',
+      name: '',
+      emailAddress: '',
+      password: '',
+      confirmPassword: '',
       errors: {},
       touch: {},
     };
@@ -61,17 +61,17 @@ class AddDialog extends Component {
   handleValidate = () => {
     const parsedErrors = {};
     const {
-      Name,
-      EmailAddress,
-      Password,
-      ConfirmPassword,
+      name,
+      emailAddress,
+      password,
+      confirmPassword,
     } = this.state;
 
     AddDialogSchema.validate({
-      Name,
-      EmailAddress,
-      Password,
-      ConfirmPassword,
+      name,
+      emailAddress,
+      password,
+      confirmPassword,
     }, { abortEarly: false })
       .then(() => {
         this.setState({
@@ -141,10 +141,10 @@ class AddDialog extends Component {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    helperText={(this.getError('Name')) ? errors.Name : ''}
-                    onChange={this.handleChange('Name')}
-                    onBlur={this.handleBlur('Name')}
-                    error={this.getError('Name')}
+                    helperText={(this.getError('name')) ? errors.name : ''}
+                    onChange={this.handleChange('name')}
+                    onBlur={this.handleBlur('name')}
+                    error={this.getError('name')}
                     required
                     id="outlined-name"
                     label="Name"
@@ -164,10 +164,10 @@ class AddDialog extends Component {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    helperText={(this.getError('EmailAddress')) ? errors.EmailAddress : ''}
-                    onChange={this.handleChange('EmailAddress')}
-                    onBlur={this.handleBlur('EmailAddress')}
-                    error={this.getError('EmailAddress')}
+                    helperText={(this.getError('emailAddress')) ? errors.emailAddress : ''}
+                    onChange={this.handleChange('emailAddress')}
+                    onBlur={this.handleBlur('emailAddress')}
+                    error={this.getError('emailAddress')}
                     id="outlined-uncontrolled"
                     label="Email Address"
                     defaultValue=""
@@ -187,10 +187,10 @@ class AddDialog extends Component {
                   <TextField
                     type="password"
                     fullWidth
-                    helperText={(this.getError('Password')) ? errors.Password : ''}
-                    onChange={this.handleChange('Password')}
-                    onBlur={this.handleBlur('Password')}
-                    error={this.getError('Password')}
+                    helperText={(this.getError('password')) ? errors.password : ''}
+                    onChange={this.handleChange('password')}
+                    onBlur={this.handleBlur('password')}
+                    error={this.getError('password')}
                     id="outlined-required"
                     label="Password"
                     defaultValue=""
@@ -210,10 +210,10 @@ class AddDialog extends Component {
                   <TextField
                     type="password"
                     fullWidth
-                    helperText={(this.getError('ConfirmPassword')) ? errors.ConfirmPassword : ''}
-                    onChange={this.handleChange('ConfirmPassword')}
-                    onBlur={this.handleBlur('ConfirmPassword')}
-                    error={this.getError('ConfirmPassword')}
+                    helperText={(this.getError('confirmPassword')) ? errors.confirmPassword : ''}
+                    onChange={this.handleChange('confirmPassword')}
+                    onBlur={this.handleBlur('confirmPassword')}
+                    error={this.getError('confirmPassword')}
                     id="outlined-error"
                     label="Confirm Password"
                     defaultValue=""
