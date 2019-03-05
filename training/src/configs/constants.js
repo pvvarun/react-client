@@ -13,21 +13,21 @@ export const object1 = {
 };
 
 export const AddDialogSchema = yup.object({
-  Name: yup.string().min(3).required().label('Name'),
-  EmailAddress: yup.string()
+  name: yup.string().min(3).required().label('Name'),
+  emailAddress: yup.string()
     .matches(/^[A-Za-z0-9._%+-]+@successive.tech$/, 'EmailAddress must be a valid email.')
     .required('Email Address is required'),
-  Password: yup.string()
+  password: yup.string()
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/, 'Password must be minimum of 8 characters and contains at least one Uppercase letter, lowercase letter and one digit.')
     .required('Password is required.'),
-  ConfirmPassword: yup.string()
+  confirmPassword: yup.string()
     .oneOf([yup.ref('Password'), null], 'Passwords must match'),
 });
 export const TraineeLoginSchema = yup.object({
-  EmailAddress: yup.string()
+  emailAddress: yup.string()
     .matches(/^[A-Za-z0-9._%+-]+@successive.tech$/, 'EmailAddress must be a valid email.')
     .required('Email Address is required'),
-  Password: yup.string()
+  password: yup.string()
     .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/, 'Password must be minimum of 8 characters and contains at least one Uppercase letter, lowercase letter and one digit.')
     .required('Password is required.'),
 });

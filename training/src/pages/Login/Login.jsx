@@ -55,8 +55,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      EmailAddress: '',
-      Password: '',
+      emailAddress: '',
+      password: '',
       errors: {},
       touch: {},
     };
@@ -73,13 +73,13 @@ handleBlur = field => () => {
 handleValidate = () => {
   const parsedErrors = {};
   const {
-    EmailAddress,
-    Password,
+    emailAddress,
+    password,
   } = this.state;
 
   TraineeLoginSchema.validate({
-    EmailAddress,
-    Password,
+    emailAddress,
+    password,
   }, { abortEarly: false })
     .then(() => {
       this.setState({
@@ -144,10 +144,10 @@ render() {
               <h1 position="right">Login</h1>
             </div>
             <TextField
-              helperText={(this.getError('EmailAddress')) ? errors.EmailAddress : ''}
-              onChange={this.handleChange('EmailAddress')}
-              onBlur={this.handleBlur('EmailAddress')}
-              error={this.getError('EmailAddress')}
+              helperText={(this.getError('emailAddress')) ? errors.emailAddress : ''}
+              onChange={this.handleChange('emailAddress')}
+              onBlur={this.handleBlur('emailAddress')}
+              error={this.getError('emailAddress')}
               fullWidth
               required
               id="outlined-name"
@@ -168,10 +168,10 @@ render() {
           <Grid item xs={12}>
             <TextField
               type="password"
-              helperText={(this.getError('Password')) ? errors.Password : ''}
-              onChange={this.handleChange('Password')}
-              onBlur={this.handleBlur('Password')}
-              error={this.getError('Password')}
+              helperText={(this.getError('password')) ? errors.password : ''}
+              onChange={this.handleChange('password')}
+              onBlur={this.handleBlur('password')}
+              error={this.getError('password')}
               id="outlined-uncontrolled"
               fullWidth
               label="Password"
@@ -200,6 +200,10 @@ render() {
               SIGN IN
         </Button>
       </Paper>
+      <div className={classes.align}>
+        <spam>&copy;</spam>
+          Successive Technologies
+      </div>
     </div>
   );
 }

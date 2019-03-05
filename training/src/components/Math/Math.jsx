@@ -16,7 +16,6 @@ class Math extends Component {
       first, second, operator, children,
     } = this.props;
     const result = math.calculate(first, second, operator);
-    // console.log('-----------childern show -------', children, first, second, result, operator);
     return (children) ? children(first, second, operator, result) : `${first} ${operator} ${second} = ${result}`;
   }
 }

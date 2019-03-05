@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-// import { TextFieldDemo } from './pages/TextFieldDemo';
-// import { InputFieldDemo } from './pages/InputFieldDemo';
-// import { BannerDemo } from './pages/BannerDemo';
-// import { MuiThemeProvider } from '@material-ui/core/styles';
-// import { Typography } from '@material-ui/core';
-// import { ChildrenDemo } from './pages/ChildrenDemo';
-// import theme from './theme';
-// import { Trainee } from './pages/Trainee';
-// import { NavBar } from './pages/Components/Navbar';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import { TextFieldDemo } from './pages/TextFieldDemo';
+import { InputFieldDemo } from './pages/InputFieldDemo';
+import { BannerDemo } from './pages/BannerDemo';
+import { ChildrenDemo } from './pages/ChildrenDemo';
+import theme from './theme';
+import { Trainee } from './pages/Trainee';
 import { Login } from './pages/Login';
+import { NotFound } from './components/NotFound';
+import { AuthRoute, PrivateRoute } from './routes';
 
 class App extends Component {
   constructor(props) {
@@ -33,21 +35,23 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        {/* <BannerDemo />
-        <TextFieldDemo {...this.state} /> */}
-        {/* <InputFieldDemo /> */}
-        {/* <Trainee /> */}
-        {/* <NavBar /> */}
-        <Login />
-        {/* <MuiThemeProvider theme={theme}>
-          <Typography>
-            <ChildrenDemo />
-            {this.renderCalculator(9, 3)}
-          </Typography>
-        </MuiThemeProvider> */}
-      </>
-      // this.state.flag?<TextFieldDemo />:<TextFieldDemo />
+      <Typography>
+        <MuiThemeProvider>
+          <Router>
+            <Switch>
+              <PrivateRoute exact path="/" component={Trainee} />
+              <AuthRoute exact path="/login" component={Login} />
+              <PrivateRoute exact path="/TextFieldDemo" component={TextFieldDemo} />
+              <PrivateRoute exact path="/BannerDemo" component={BannerDemo} />
+              <PrivateRoute exact path="/InputFieldDemo2" component={TextFieldDemo} />
+              <PrivateRoute exact path="/InputDemo" component={InputFieldDemo} />
+              <PrivateRoute exact path="/ChildrenDemo" theme={theme} component={ChildrenDemo} />
+              <PrivateRoute component={NotFound} />
+            </Switch>
+          </Router>
+        </MuiThemeProvider>
+      </Typography>
+
     );
   }
 }
