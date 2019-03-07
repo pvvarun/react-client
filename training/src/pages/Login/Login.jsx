@@ -113,7 +113,6 @@ getError = (field) => {
 
 hasErrors = () => {
   const { errors } = this.state;
-  console.log('------------errors in  hasError-------', errors);
   return Object.keys(errors).length !== 0;
 }
 
@@ -189,7 +188,6 @@ render() {
             />
           </Grid>
         </Grid>
-        {console.log('this.hasErrors----------', this.hasErrors(), this.isTouched())}
         <Button
         // onClick={show}
           color="primary"
