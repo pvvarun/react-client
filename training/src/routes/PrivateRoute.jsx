@@ -3,8 +3,9 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { PrivateLayout } from '../layouts/PrivateLayout';
 
-const LoginLayoutRoute = ({ component: Component }) => (
+const LoginLayoutRoute = ({ component: Component, ...rest }) => (
   <Route
+    {...rest}
     render={matchProps => (
       <PrivateLayout>
         <Component {...matchProps} />
