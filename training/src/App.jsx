@@ -7,10 +7,12 @@ import { InputFieldDemo } from './pages/InputFieldDemo';
 import { BannerDemo } from './pages/BannerDemo';
 import { ChildrenDemo } from './pages/ChildrenDemo';
 import theme from './theme';
-import { Trainee } from './pages/Trainee';
+import { TraineeList, TraineeDetail, Trainee } from './pages';
 import { Login } from './pages/Login';
 import { NotFound } from './components/NotFound';
 import { AuthRoute, PrivateRoute } from './routes';
+// import TraineeDetail from './pages/Trainee/TraineeDetail';
+// import TraineeList from './pages/Trainee/TraineeList';
 
 class App extends Component {
   constructor(props) {
@@ -35,15 +37,19 @@ class App extends Component {
 
   render() {
     return (
+      // <Router>
+      //   <TraineeList />
+      // </Router>
       <Typography>
         <MuiThemeProvider>
           <Router>
             <Switch>
-              <PrivateRoute exact path="/" component={Trainee} />
               <AuthRoute exact path="/login" component={Login} />
+              <PrivateRoute exact path="/trainee" component={TraineeList} />
+              <PrivateRoute exact path="/" component={Trainee} />
+              <PrivateRoute exact path="/trainee/:id" component={TraineeDetail} />
               <PrivateRoute exact path="/TextFieldDemo" component={TextFieldDemo} />
               <PrivateRoute exact path="/BannerDemo" component={BannerDemo} />
-              <PrivateRoute exact path="/InputFieldDemo2" component={TextFieldDemo} />
               <PrivateRoute exact path="/InputDemo" component={InputFieldDemo} />
               <PrivateRoute exact path="/ChildrenDemo" theme={theme} component={ChildrenDemo} />
               <PrivateRoute component={NotFound} />
