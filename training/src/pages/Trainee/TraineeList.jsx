@@ -12,8 +12,13 @@ const TraineeList = () => {
       <li>{element.name}</li>
     </Link>,
   ));
-  console.log('------Trainee list-----------------', TraineeListArray);
-  return (<><Trainee /> {TraineeListArray}</>);
+  // console.log('------Trainee list-----------------', TraineeListArray);
+  return (
+    <>
+      <Trainee />
+      {TraineeListArray}
+    </>
+  );
   // <Trainee>
   // </Trainee>
 };

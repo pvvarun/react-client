@@ -42,12 +42,7 @@ const getDateFormatted = date => moment(date).format('dddd, MMMM Do YYYY, h:mm:s
 function Traineefound(props) {
   const { classes, match } = props;
   // console.log('----params---', match.params.id);
-  const found = trainee.find((element) => {
-    if (element.id === match.params.id) {
-      return (element);
-    }
-    return null;
-  });
+  const found = trainee.find(element => element.id === match.params.id);
   if (found) {
     return (
       <div>
