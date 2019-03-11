@@ -5,16 +5,36 @@ import Trainee from './Trainee';
 import trainee from './data/trainee';
 import { SimpleTable } from '../../components/Table';
 
-// import {}
-const TraineeList = () => {
-  const TraineeListArray = [];
-  trainee.forEach(element => TraineeListArray.push(
-    <Link component={RouterLink} to={`trainee/${element.id}`}>
-      <li>{element.name}</li>
-    </Link>,
-  ));
-  // console.log('------Trainee list-----------------', TraineeListArray);
-  return (
+class TraineeList extends React.Component {
+
+  constructor( props ) {
+    super(props);
+    this.state = {
+      orderBy: '',
+      order: 'desc',
+    }
+  }
+
+  handleSelect = (id) => {
+    this.props.history.push(`/trainee/${id}`);
+    console.log('-------------------props value------------------', this.props, id);
+  };
+
+  handleSort = (fieldName, order) => {
+    console.log('-------------------fieldName is------------------', fieldName);
+    order = (order === 'desc') ? 'asc' : 'desc';
+    this.setState({ order, orderBy:fieldName});
+  }
+
+  render() {
+    const { order, orderBy} = this.state;
+    const TraineeListArray = [];
+    trainee.forEach(element => TraineeListArray.push(
+      <Link component={RouterLink} to={`trainee/${element.id}`}>
+        <li>{element.name}</li>
+      </Link>,
+    ));
+    return(
     <>
       <Trainee />
       <SimpleTable
@@ -29,11 +49,24 @@ const TraineeList = () => {
           {
             field: 'email',
             label: 'Email Address',
+            format: value => value && value.toUpperCase(),
+          },
+          {
+            field: 'createdAt',
+            label: 'Date',
+            align: 'right',
+            format: 'getFormattedDate',
           },
         ]}
+        orderBy={orderBy}
+        order={order}
+        onSort={this.handleSort}
+        onSelect={this.handleSelect}
       />
       {TraineeListArray}
     </>
   );
+  }
 };
+
 export default TraineeList;
