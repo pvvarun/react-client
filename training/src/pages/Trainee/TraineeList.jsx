@@ -67,8 +67,9 @@ class TraineeList extends React.Component {
     this.setState({deleteDialog: false, editDialog: false});
   }
 
-  printEditedData = (dataChanged) => {
+  printEditedData = (dataChanged,openSnackBar) => {
     console.log(dataChanged);
+    openSnackBar('success','This is a success message');
     this.setState({editDialog: false});
   }
 

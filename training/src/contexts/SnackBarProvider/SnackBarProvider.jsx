@@ -72,12 +72,12 @@ class SharedSnackBarProvider extends Component {
         </SharedSnackBarContext.Provider>
       <SnackBar open={status}>
       <SnackBarContent
-        className={classes.success}
+        className={classes[iconSelector]}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         onClose={this.closeSnackBar}
         message={
           <>

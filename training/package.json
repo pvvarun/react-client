@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint",
+    "lint": "npm run lint",
     "lint:fix": "npm run lint --fix",
     "commit": "npx git-cz"
   },

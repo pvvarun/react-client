@@ -17,7 +17,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-  hover:{
+  hover: {
     cursor: 'pointer',
   },
 });
@@ -45,17 +45,17 @@ function SimpleTable(props) {
     onChangePage,
   } = props;
   const TableHeading = columns.map(
-    element => <TableCell align={element.align} hover onClick={() =>onSort(element.field, order)}>
+    element => <TableCell align={element.align} hover onClick={() => onSort(element.field, order)}>
       {element.label}
       <TableSortLabel
         className={classes.hover}
         active={orderBy === element.field}
         direction={order}
-        />
+      />
     </TableCell>
-    );
-    let content;
-    let iterateValue = 0;
+  );
+  let content;
+  let iterateValue = 0;
   let t = 0;
   const TableData = data.map((element) => {
     content = Object.keys(element);
@@ -69,33 +69,34 @@ function SimpleTable(props) {
             const data1 = content[iterateValue];
             return (
               <>
-            {
-              (data1 === 'createdAt')
-              ?
-              <>
-              <TableCell align={item.align}>{getDateFormatted(element[data1])}</TableCell>
-              <TableCell>
-              {actions.map((indexElement, index) => {
-                const { icon, handler} = indexElement;
-                return (
-                <div >
-                <IconButton onClick={(event) => handler(element, event)}
-                >
-                {icon}
-                </IconButton>
-                </div>
-                )}
-              )
-            }
-              </TableCell>
+                {
+                  (data1 === 'createdAt')
+                    ?
+                    <>
+                      <TableCell align={item.align}>{getDateFormatted(element[data1])}</TableCell>
+                      <TableCell>
+                        {actions.map((indexElement, index) => {
+                          const { icon, handler } = indexElement;
+                          return (
+                            <div >
+                              <IconButton onClick={(event) => handler(element, event)}
+                              >
+                                {icon}
+                              </IconButton>
+                            </div>
+                          )
+                        }
+                        )
+                        }
+                      </TableCell>
+                    </>
+                    :
+                    <TableCell align={item.align}>{element[data1]}</TableCell>
+                }
               </>
-              :
-              <TableCell align={item.align}>{element[data1]}</TableCell>
-              }
-              </>
-          );
-        },
-        )}
+            );
+          },
+          )}
       </TableRow>
     );
   });

@@ -110,14 +110,18 @@ class EditDialog extends React.Component{
           <Button onClick={() => handle()} color="primary">
             CANCEL
           </Button>
+          <SharedSnackBarConsumer>
+          {(openSnackBar) => (
           <Button
-            onClick={() => printData(this.state)}
+            onClick={() => printData(this.state, openSnackBar)}
             color="primary"
             variant="outlined"
             disabled={!isAnythingChange}
           >
             SUBMIT
           </Button>
+          )}
+          </SharedSnackBarConsumer>
         </DialogActions>
     </Dialog>
     );
