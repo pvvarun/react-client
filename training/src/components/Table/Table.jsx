@@ -8,7 +8,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { TableSortLabel } from '@material-ui/core';
+import { TableSortLabel, Icon, IconButton } from '@material-ui/core';
+
 
 const styles = theme => ({
   root: {
@@ -37,6 +38,11 @@ function SimpleTable(props) {
     onSort,
     order,
     orderBy,
+    actions,
+    count,
+    page,
+    rowsPerPage,
+    onChangePage,
   } = props;
   const TableHeading = columns.map(
     element => <TableCell align={element.align} hover onClick={() =>onSort(element.field, order)}>
@@ -45,11 +51,11 @@ function SimpleTable(props) {
         className={classes.hover}
         active={orderBy === element.field}
         direction={order}
-    />
+        />
     </TableCell>
     );
-  let content;
-  let count = 0;
+    let content;
+    let iterateValue = 0;
   let t = 0;
   const TableData = data.map((element) => {
     content = Object.keys(element);
@@ -58,16 +64,38 @@ function SimpleTable(props) {
       <TableRow key={element.id} onClick={() => onSelect(element.id)} style={getStripedStyle(t)} hover>
         {
           columns.map((item) => {
-          count = (count === (columns.length)) ? 1 : count + 1;
-          const data1 = content[count];
-          return (
-            <>
+            // console.log('--------item value-------', element);
+            iterateValue = (iterateValue === (columns.length)) ? 1 : iterateValue + 1;
+            const data1 = content[iterateValue];
+            return (
+              <>
             {
-            (data1 === 'createdAt') ? <TableCell align={item.align}>{getDateFormatted(element[data1])}</TableCell> : <TableCell align={item.align}>{element[data1]}</TableCell>
+              (data1 === 'createdAt')
+              ?
+              <>
+              <TableCell align={item.align}>{getDateFormatted(element[data1])}</TableCell>
+              <TableCell>
+              {actions.map((indexElement, index) => {
+                const { icon, handler} = indexElement;
+                return (
+                <div >
+                <IconButton onClick={(event) => handler(element, event)}
+                >
+                {icon}
+                </IconButton>
+                </div>
+                )}
+              )
+            }
+              </TableCell>
+              </>
+              :
+              <TableCell align={item.align}>{element[data1]}</TableCell>
               }
-            </>
+              </>
           );
-        })}
+        },
+        )}
       </TableRow>
     );
   });

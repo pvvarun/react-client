@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint . --ext .js,.jsx",
+    "lint": "eslint",
     "lint:fix": "npm run lint --fix",
     "commit": "npx git-cz"
   },
@@ -34,7 +34,7 @@
   ],
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import"  : "^2.16.0",
     "husky": "^1.3.1"
   }
 }

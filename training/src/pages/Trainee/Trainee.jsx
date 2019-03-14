@@ -36,7 +36,7 @@ class OutlinedTextFields extends Component {
 
   render() {
     const { open } = this.state;
-    // console.log(open, 'inside traine  open state');
+    // console.log(open, 'inside trainee  open state');
     return (
       <>
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>

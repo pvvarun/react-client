@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Trainee from './Trainee';
 import trainee from './data/trainee';
 import { SimpleTable } from '../../components/Table';
+import { RemoveDialog, EditDialog } from '../Trainee/components/';
 
 class TraineeList extends React.Component {
 
@@ -12,6 +15,9 @@ class TraineeList extends React.Component {
     this.state = {
       orderBy: '',
       order: 'desc',
+      deleteDialog: false,
+      editDialog: false,
+      data:'',
     }
   }
 
@@ -26,7 +32,48 @@ class TraineeList extends React.Component {
     this.setState({ order, orderBy:fieldName});
   }
 
+  handleEditDialogOpen = (data, event) => {
+    event.stopPropagation();
+    this.setState({editDialog: true, data});
+  }
+
+  handleRemoveDialogOpen = (data, event) => {
+    event.stopPropagation();
+    this.setState({deleteDialog: true, data});
+  }
+
+  deleteCloseDialog = () => {
+    this.setState( previousState =>
+      ({
+        deleteDialog: !previousState.deleteDialog
+      })
+    )
+  }
+
+  editCloseDialog = () => {
+    this.setState( previousState =>
+      ({
+        editDialog: !previousState.editDialog
+      })
+    )
+  }
+  printData = (openSnackBar) => {
+    const fourteenFebDate = '2019-02-14T18:15:11.778Z'
+    const { createdAt } = this.state.data;
+    console.log(this.state.data);
+    (createdAt >= fourteenFebDate)
+    ? openSnackBar('success','This is a success message')
+    : openSnackBar('error','This is an error message');
+    this.setState({deleteDialog: false, editDialog: false});
+  }
+
+  printEditedData = (dataChanged) => {
+    console.log(dataChanged);
+    this.setState({editDialog: false});
+  }
+
   render() {
+    const { deleteDialog, editDialog } = this.state;
     const { order, orderBy} = this.state;
     const TraineeListArray = [];
     trainee.forEach(element => TraineeListArray.push(
@@ -58,12 +105,27 @@ class TraineeList extends React.Component {
             format: 'getFormattedDate',
           },
         ]}
+        actions={[
+          {
+            icon: <EditIcon />,
+            handler: this.handleEditDialogOpen,
+          },
+          {
+            icon: <DeleteIcon />,
+            handler: this.handleRemoveDialogOpen,
+          },
+        ]}
         orderBy={orderBy}
         order={order}
         onSort={this.handleSort}
         onSelect={this.handleSelect}
+        count={100}
+        // page={page}
+        onChangePage={this.handleChangePage}
       />
-      {TraineeListArray}
+      {/* {TraineeListArray} */}
+      <RemoveDialog handle={this.deleteCloseDialog} stateVariable={deleteDialog} printData={this.printData}/>
+      <EditDialog handle={this.editCloseDialog} stateVariable={editDialog} printData={this.printEditedData} data={this.state.data}/>
     </>
   );
   }
