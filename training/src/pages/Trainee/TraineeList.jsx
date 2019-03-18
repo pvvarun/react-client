@@ -27,15 +27,11 @@ class TraineeList extends React.Component {
 
   handleSelect = id => {
     this.props.history.push(`/trainee/${id}`);
-    console.log(
-      "-------------------props value------------------",
-      this.props,
-      id
-    );
+    // console.log("-------------------props value------------------", this.props, id);
   };
 
   handleSort = (fieldName, order) => {
-    console.log("-------------------fieldName is------------------", fieldName);
+    // console.log("-------------------fieldName is------------------", fieldName);
     order = order === "desc" ? "asc" : "desc";
     this.setState({ order, orderBy: fieldName });
   };
@@ -66,13 +62,17 @@ class TraineeList extends React.Component {
     const { createdAt } = this.state.data;
     console.log(this.state.data);
     createdAt >= fourteenFebDate
-      ? openSnackBar("success", "This is a success message")
-      : openSnackBar("error", "This is an error message");
+      ? openSnackBar("success", "Trainee deleted successfully")
+      : openSnackBar("error", "Cannot delete Trainee");
     this.setState({ deleteDialog: false, editDialog: false });
   };
 
   printEditedData = (dataChanged, openSnackBar) => {
-    console.log(dataChanged);
+    const { data } = this.state;
+    const obj = { name: '', email: ''};
+    obj.name = dataChanged.name || data.name;
+    obj.email = dataChanged.email || data.email;
+    console.log(obj);
     openSnackBar("success", "Trainee successfully edited");
     this.setState({ editDialog: false });
   };
