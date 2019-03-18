@@ -11,6 +11,7 @@ import { TraineeList, TraineeDetail, Trainee } from './pages';
 import { Login } from './pages/Login';
 import { NotFound } from './components/NotFound';
 import { AuthRoute, PrivateRoute } from './routes';
+import { SharedSnackBarProvider } from './contexts';
 // import TraineeDetail from './pages/Trainee/TraineeDetail';
 // import TraineeList from './pages/Trainee/TraineeList';
 
@@ -41,6 +42,7 @@ class App extends Component {
       //   <TraineeList />
       // </Router>
       <Typography>
+        <SharedSnackBarProvider>
         <MuiThemeProvider>
           <Router>
             <Switch>
@@ -56,6 +58,7 @@ class App extends Component {
             </Switch>
           </Router>
         </MuiThemeProvider>
+        </SharedSnackBarProvider>
       </Typography>
 
     );
