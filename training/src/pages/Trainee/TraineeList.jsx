@@ -1,135 +1,151 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Trainee from './Trainee';
-import trainee from './data/trainee';
-import { SimpleTable } from '../../components/Table';
-import { RemoveDialog, EditDialog } from '../Trainee/components/';
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "@material-ui/core/Link";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Trainee from "./Trainee";
+import trainee from "./data/trainee";
+import { SimpleTable } from "../../components/Table";
+import { RemoveDialog, EditDialog } from "../Trainee/components/";
 
 class TraineeList extends React.Component {
-
-  constructor( props ) {
+  constructor(props) {
     super(props);
     this.state = {
-      orderBy: '',
-      order: 'desc',
+      orderBy: "",
+      order: "desc",
       deleteDialog: false,
       editDialog: false,
-      data:'',
-    }
+      data: "",
+      page: 0
+    };
   }
 
-  handleSelect = (id) => {
+  handleChangePage = (event, page) => {
+    this.setState({ page });
+  };
+
+  handleSelect = id => {
     this.props.history.push(`/trainee/${id}`);
-    console.log('-------------------props value------------------', this.props, id);
+    console.log(
+      "-------------------props value------------------",
+      this.props,
+      id
+    );
   };
 
   handleSort = (fieldName, order) => {
-    console.log('-------------------fieldName is------------------', fieldName);
-    order = (order === 'desc') ? 'asc' : 'desc';
-    this.setState({ order, orderBy:fieldName});
-  }
+    console.log("-------------------fieldName is------------------", fieldName);
+    order = order === "desc" ? "asc" : "desc";
+    this.setState({ order, orderBy: fieldName });
+  };
 
   handleEditDialogOpen = (data, event) => {
     event.stopPropagation();
-    this.setState({editDialog: true, data});
-  }
+    this.setState({ editDialog: true, data });
+  };
 
   handleRemoveDialogOpen = (data, event) => {
     event.stopPropagation();
-    this.setState({deleteDialog: true, data});
-  }
+    this.setState({ deleteDialog: true, data });
+  };
 
   deleteCloseDialog = () => {
-    this.setState( previousState =>
-      ({
-        deleteDialog: !previousState.deleteDialog
-      })
-    )
-  }
+    this.setState(previousState => ({
+      deleteDialog: !previousState.deleteDialog
+    }));
+  };
 
   editCloseDialog = () => {
-    this.setState( previousState =>
-      ({
-        editDialog: !previousState.editDialog
-      })
-    )
-  }
-  printData = (openSnackBar) => {
-    const fourteenFebDate = '2019-02-14T18:15:11.778Z'
+    this.setState(previousState => ({
+      editDialog: !previousState.editDialog
+    }));
+  };
+  printData = openSnackBar => {
+    const fourteenFebDate = "2019-02-14T18:15:11.778Z";
     const { createdAt } = this.state.data;
     console.log(this.state.data);
-    (createdAt >= fourteenFebDate)
-    ? openSnackBar('success','This is a success message')
-    : openSnackBar('error','This is an error message');
-    this.setState({deleteDialog: false, editDialog: false});
-  }
+    createdAt >= fourteenFebDate
+      ? openSnackBar("success", "This is a success message")
+      : openSnackBar("error", "This is an error message");
+    this.setState({ deleteDialog: false, editDialog: false });
+  };
 
-  printEditedData = (dataChanged,openSnackBar) => {
+  printEditedData = (dataChanged, openSnackBar) => {
     console.log(dataChanged);
-    openSnackBar('success','This is a success message');
-    this.setState({editDialog: false});
-  }
+    openSnackBar("success", "Trainee successfully edited");
+    this.setState({ editDialog: false });
+  };
 
   render() {
     const { deleteDialog, editDialog } = this.state;
-    const { order, orderBy} = this.state;
+    const { order, orderBy } = this.state;
     const TraineeListArray = [];
-    trainee.forEach(element => TraineeListArray.push(
-      <Link component={RouterLink} to={`trainee/${element.id}`}>
-        <li>{element.name}</li>
-      </Link>,
-    ));
-    return(
-    <>
-      <Trainee />
-      <SimpleTable
-        id="id"
-        data={trainee}
-        columns={[
-          {
-            field: 'name',
-            label: 'Name',
-            align: 'center',
-          },
-          {
-            field: 'email',
-            label: 'Email Address',
-            format: value => value && value.toUpperCase(),
-          },
-          {
-            field: 'createdAt',
-            label: 'Date',
-            align: 'right',
-            format: 'getFormattedDate',
-          },
-        ]}
-        actions={[
-          {
-            icon: <EditIcon />,
-            handler: this.handleEditDialogOpen,
-          },
-          {
-            icon: <DeleteIcon />,
-            handler: this.handleRemoveDialogOpen,
-          },
-        ]}
-        orderBy={orderBy}
-        order={order}
-        onSort={this.handleSort}
-        onSelect={this.handleSelect}
-        count={100}
-        // page={page}
-        onChangePage={this.handleChangePage}
-      />
-      {/* {TraineeListArray} */}
-      <RemoveDialog handle={this.deleteCloseDialog} stateVariable={deleteDialog} printData={this.printData}/>
-      <EditDialog handle={this.editCloseDialog} stateVariable={editDialog} printData={this.printEditedData} data={this.state.data}/>
-    </>
-  );
+    trainee.forEach(element =>
+      TraineeListArray.push(
+        <Link component={RouterLink} to={`trainee/${element.id}`}>
+          <li>{element.name}</li>
+        </Link>
+      )
+    );
+    return (
+      <>
+        <Trainee />
+        <SimpleTable
+          id="id"
+          data={trainee}
+          columns={[
+            {
+              field: "name",
+              label: "Name",
+              align: "center"
+            },
+            {
+              field: "email",
+              label: "Email Address",
+              format: value => value && value.toUpperCase()
+            },
+            {
+              field: "createdAt",
+              label: "Date",
+              align: "right",
+              format: "getFormattedDate"
+            }
+          ]}
+          actions={[
+            {
+              icon: <EditIcon />,
+              handler: this.handleEditDialogOpen
+            },
+            {
+              icon: <DeleteIcon />,
+              handler: this.handleRemoveDialogOpen
+            }
+          ]}
+          orderBy={orderBy}
+          order={order}
+          onSort={this.handleSort}
+          onSelect={this.handleSelect}
+          count={100}
+          page={this.state.page}
+          rowsPerPage={3}
+          onChangePage={this.handleChangePage}
+        />
+        {/* {TraineeListArray} */}
+        <RemoveDialog
+          handle={this.deleteCloseDialog}
+          stateVariable={deleteDialog}
+          printData={this.printData}
+        />
+        <EditDialog
+          handle={this.editCloseDialog}
+          stateVariable={editDialog}
+          printData={this.printEditedData}
+          data={this.state.data}
+        />
+      </>
+    );
   }
-};
+}
 
 export default TraineeList;
