@@ -14,7 +14,7 @@ import { SharedSnackBarConsumer } from "../../../../contexts";
 class EditDialog extends React.Component {
   constructor(props) {
     super(props);
-    console.log("---------------props are-------------", props);
+    // console.log("---------------props are-------------", props);
     this.previousData = {
       name: props.data.name,
       email: props.data.email
@@ -61,13 +61,7 @@ class EditDialog extends React.Component {
   render() {
     const { handle, stateVariable, printData, data } = this.props;
     const { name, email, isAnythingChange } = this.state;
-    console.log(
-      "-----state and props------",
-      name,
-      email,
-      this.previousData.name,
-      this.previousData.email
-    );
+    // console.log("-----state and props------", name, email, this.previousData.name, this.previousData.email);
     return (
       <Dialog open={stateVariable} onClose={() => handle()}>
         <DialogTitle>Edit Trainee</DialogTitle>
